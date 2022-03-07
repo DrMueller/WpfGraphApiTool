@@ -1,0 +1,27 @@
+﻿<ResourceDictionary
+ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+ x:Class="Mmu.WpfGraphApiTool.Infrastructure.Wpf.Aspects.ApplicationInformations.Components.InformationBarDict">
+
+ <BooleanToVisibilityConverter x:Key="BoolToVisibilityCnv" />
+
+ <Storyboard x:Key="SbRotate">
+  <DoubleAnimation
+   Storyboard.TargetProperty="(UIElement.RenderTransform).Angle"
+   From="0" To="360" Duration="0:0:2"
+   RepeatBehavior="Forever" />
+ </Storyboard>
+
+ <Style TargetType="{x:Type Border}" x:Key="InformationBorder">
+  <Setter Property="BorderThickness" Value="0.1" />
+  <Setter Property="BorderBrush" Value="Black" />
+  <Setter Property="Padding" Value="10" />
+  <Setter Property="Margin" Value="0, 10, 0, 10" />
+ </Style>
+
+ <Style TargetType="{x:Type TextBox}" x:Key="InformationBar" BasedOn="{StaticResource {x:Type TextBox}}">
+  <Setter Property="BorderThickness" Value="0" />
+  <Setter Property="FontSize" Value="20" />
+  <Setter Property="Foreground" Value="{Binding InformationEntry.Foreground, Mode=OneWay}" />
+ </Style>
+</ResourceDictionary>

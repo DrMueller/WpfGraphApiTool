@@ -1,0 +1,62 @@
+﻿<ResourceDictionary
+ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+ xmlns:nav="clr-namespace:Mmu.WpfGraphApiTool.Infrastructure.Wpf.Initialization.SubAreas.Navigation.Models"
+ xmlns:vm="clr-namespace:Mmu.WpfGraphApiTool.Infrastructure.Wpf.MvvmShell.Container"
+ xmlns:attachedProperties="clr-namespace:Mmu.WpfGraphApiTool.Infrastructure.Wpf.ViewExtensions.AttachedProperties">
+
+ <Style TargetType="TextBlock" x:Key="MainHeaderTextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
+  <Setter Property="FontSize" Value="30" />
+  <Setter Property="FontWeight" Value="Bold" />
+  <Setter Property="HorizontalAlignment" Value="Stretch" />
+  <Setter Property="TextAlignment" Value="Center" />
+  <Setter Property="VerticalAlignment" Value="Center" />
+ </Style>
+
+ <Style TargetType="Border" x:Key="HeaderBorder">
+  <Setter Property="BorderThickness" Value="0.1" />
+  <Setter Property="BorderBrush" Value="Black" />
+  <Setter Property="Background" Value="LightBlue" />
+ </Style>
+
+ <Style TargetType="Grid" x:Key="ContainerGrid">
+  <Setter Property="Margin" Value="10" />
+ </Style>
+
+ <Style TargetType="ListBox" x:Key="NavigationListBox">
+  <Setter Property="Margin" Value="0,10,0,0" />
+  <Setter Property="BorderThickness" Value="0.3" />
+  <Setter Property="BorderBrush" Value="Black" />
+ </Style>
+
+ <Style TargetType="Border" x:Key="ContentBorder">
+  <Setter Property="BorderThickness" Value="0.1" />
+  <Setter Property="BorderBrush" Value="Black" />
+  <Setter Property="Margin" Value="10,10,0,0" />
+ </Style>
+
+ <DataTemplate x:Key="MainNavigation" DataType="{x:Type nav:NavigationEntry}">
+  <Label Content="{Binding NavigationDescription}" />
+ </DataTemplate>
+
+ <DataTemplate x:Key="MainHeader" DataType="{x:Type vm:ViewModelContainer}">
+  <Border Style="{StaticResource HeaderBorder}">
+   <Grid>
+    <TextBlock Style="{StaticResource MainHeaderTextBlock}">
+     <TextBlock.Text>
+      <PriorityBinding>
+       <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
+       <Binding Path="CurrentContent.HeadingDescription" />
+      </PriorityBinding>
+     </TextBlock.Text>
+    </TextBlock>
+   </Grid>
+  </Border>
+ </DataTemplate>
+
+ <Style TargetType="ListBoxItem" x:Key="MainNavigationContainerStyle"
+        BasedOn="{StaticResource {x:Type ListBoxItem}}">
+  <Setter Property="attachedProperties:EventCommandBinding.EventName" Value="PreviewMouseLeftButtonDown" />
+  <Setter Property="attachedProperties:EventCommandBinding.Command" Value="{Binding NavigationCommand, Mode=OneWay}" />
+ </Style>
+</ResourceDictionary>

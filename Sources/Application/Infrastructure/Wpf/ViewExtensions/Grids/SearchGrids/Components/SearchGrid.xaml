@@ -1,0 +1,26 @@
+﻿<UserControl x:Class="Mmu.WpfGraphApiTool.Infrastructure.Wpf.ViewExtensions.Grids.SearchGrids.Components.SearchGrid"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             x:Name="Uc"
+             d:DesignHeight="450" d:DesignWidth="800">
+
+ <UserControl.Resources>
+  <ResourceDictionary Source="SearchGridDict.xaml" />
+ </UserControl.Resources>
+
+ <Grid>
+  <Grid.RowDefinitions>
+   <RowDefinition Height="40" />
+   <RowDefinition Height="*" />
+  </Grid.RowDefinitions>
+
+  <TextBox
+   Template="{StaticResource TextBoxWithWatermark}"
+   Text="{Binding SearchText, Mode=TwoWay, ElementName=Uc, UpdateSourceTrigger=PropertyChanged}" />
+
+  <ContentPresenter Grid.Row="1" Content="{Binding DataGrid, Mode=OneWay, ElementName=Uc}" />
+ </Grid>
+</UserControl>

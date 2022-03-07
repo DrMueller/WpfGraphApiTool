@@ -1,0 +1,33 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+ <ControlTemplate x:Key="TextBoxWithWatermark" TargetType="{x:Type TextBox}">
+  <Grid>
+   <TextBox
+    x:Name="txb"
+    HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+    Margin="{ TemplateBinding Margin}"
+    VerticalAlignment="{TemplateBinding VerticalAlignment}"
+    Width="{TemplateBinding Width}"
+    Text="{Binding Path=Text, RelativeSource={RelativeSource Mode=TemplatedParent}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+   <TextBlock
+    Foreground="DarkGray"
+    HorizontalAlignment="Left"
+    IsHitTestVisible="False"
+    Text="Enter search term here"
+    VerticalAlignment="Center">
+    <TextBlock.Style>
+     <Style TargetType="{x:Type TextBlock}">
+      <Setter Property="Visibility" Value="Collapsed" />
+      <Style.Triggers>
+       <DataTrigger Binding="{Binding Text, ElementName=txb}" Value="">
+        <Setter Property="Visibility" Value="Visible" />
+       </DataTrigger>
+      </Style.Triggers>
+     </Style>
+    </TextBlock.Style>
+   </TextBlock>
+  </Grid>
+ </ControlTemplate>
+</ResourceDictionary>
